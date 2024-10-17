@@ -1,0 +1,53 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+    <div id="content-main">
+        <form method="POST"  name="confirm">   {#action="{% url 'admin:save_data' %}#}
+            {% csrf_token %}
+            <fieldset class="module aligned">
+                <h1>{{ "Following Data Will be Saved" }}</h1>
+                <h3>No of Records : {{ records|length }}</h3>
+                <br>
+                <br>
+                <table>
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>ID</th>
+                        <th>Creation Date</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>E-mail</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                        <th>City</th>
+                        <th>State</th>
+                        <th>Zipcode</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for record in records %}
+{#                    {% for record in selected_data %}#}
+                        <tr>
+                            <td><input type= hidden name="import_record" value="{{ forloop.counter0 }}"></td>
+                            <td>{{ record.0 }}</td>
+                            <td>{{ record.1 }}</td>
+                            <td>{{ record.2 }}</td>
+                            <td>{{ record.3 }}</td>
+                            <td>{{ record.4 }}</td>
+                            <td>{{ record.5 }}</td>
+                            <td>{{ record.6 }}</td>
+                            <td>{{ record.7 }}</td>
+                            <td>{{ record.8 }}</td>
+                            <td>{{ record.9 }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <div class="submit-row">
+                    <input type="submit" value="Confirm Import" name="confirm">
+                </div>
+            </fieldset>
+        </form>
+    </div>
+{% endblock %}

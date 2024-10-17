@@ -1,0 +1,13 @@
+{% extends 'admin/base_site.html'%}
+{% block content %}
+<div>
+    <form action="{% url 'admin:upload_csv' %}" method="POST" enctype="multipart/form-data">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <div class="submit-row">
+            <input type="submit" value="Upload File">
+        </div>
+    </form>
+</div>
+{#    {{ block.super }}#}
+{% endblock %}
